@@ -6,7 +6,10 @@ import os
 import numpy as np
 import tensorflow as tf
 
-import model, sample, encoder
+import model
+import sample
+import encoder
+
 
 def interact_model(
     model_name='124M',
@@ -52,7 +55,8 @@ def interact_model(
     if length is None:
         length = hparams.n_ctx // 2
     elif length > hparams.n_ctx:
-        raise ValueError("Can't get samples longer than window size: %s" % hparams.n_ctx)
+        raise ValueError(
+            "Can't get samples longer than window size: %s" % hparams.n_ctx)
 
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
@@ -83,10 +87,11 @@ def interact_model(
                 for i in range(batch_size):
                     generated += 1
                     text = enc.decode(out[i])
-                    print("=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40)
+                    print("=" * 40 + " SAMPLE " +
+                          str(generated) + " " + "=" * 40)
                     print(text)
             print("=" * 80)
 
+
 if __name__ == '__main__':
     fire.Fire(interact_model)
-

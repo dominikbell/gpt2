@@ -6,7 +6,10 @@ import os
 import numpy as np
 import tensorflow as tf
 
-import model, sample, encoder
+import model
+import sample
+import encoder
+
 
 def sample_model(
     model_name='124M',
@@ -49,7 +52,8 @@ def sample_model(
     if length is None:
         length = hparams.n_ctx
     elif length > hparams.n_ctx:
-        raise ValueError("Can't get samples longer than window size: %s" % hparams.n_ctx)
+        raise ValueError(
+            "Can't get samples longer than window size: %s" % hparams.n_ctx)
 
     with tf.Session(graph=tf.Graph()) as sess:
         np.random.seed(seed)
@@ -75,6 +79,6 @@ def sample_model(
                 print("=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40)
                 print(text)
 
+
 if __name__ == '__main__':
     fire.Fire(sample_model)
-
