@@ -4,6 +4,9 @@ import model
 
 
 def top_k_logits(logits, k):
+    """
+    TODO
+    """
     if k == 0:
         # no truncation
         return logits
@@ -24,7 +27,9 @@ def top_k_logits(logits, k):
 
 
 def top_p_logits(logits, p):
-    """Nucleus sampling"""
+    """
+    Nucleus sampling
+    """
     batch, _ = logits.shape.as_list()
     sorted_logits = tf.sort(logits, direction='DESCENDING', axis=-1)
     cumulative_probs = tf.cumsum(
@@ -44,6 +49,9 @@ def top_p_logits(logits, p):
 
 
 def sample_sequence(*, hparams, length, start_token=None, batch_size=None, context=None, temperature=1, top_k=0, top_p=1):
+    """
+    TODO
+    """
     if start_token is None:
         assert context is not None, 'Specify exactly one of start_token and context!'
     else:

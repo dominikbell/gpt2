@@ -31,7 +31,8 @@ def bytes_to_unicode():
 
 
 def get_pairs(word):
-    """Return set of symbol pairs in a word.
+    """
+    Return set of symbol pairs in a word.
 
     Word is represented as tuple of symbols (symbols being variable-length strings).
     """
@@ -58,6 +59,9 @@ class Encoder:
             r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+""")
 
     def bpe(self, token):
+        """
+        TODO
+        """
         if token in self.cache:
             return self.cache[token]
         word = tuple(token)
@@ -100,6 +104,9 @@ class Encoder:
         return word
 
     def encode(self, text):
+        """
+        TODO
+        """
         bpe_tokens = []
         for token in re.findall(self.pat, text):
             token = ''.join(self.byte_encoder[b]
@@ -109,6 +116,9 @@ class Encoder:
         return bpe_tokens
 
     def decode(self, tokens):
+        """
+        TODO
+        """
         text = ''.join([self.decoder[token] for token in tokens])
         text = bytearray([self.byte_decoder[c]
                          for c in text]).decode('utf-8', errors=self.errors)
@@ -116,6 +126,9 @@ class Encoder:
 
 
 def get_encoder(model_name, models_dir):
+    """
+    TODO
+    """
     with open(os.path.join(models_dir, model_name, 'encoder.json'), 'r') as f:
         encoder = json.load(f)
     with open(os.path.join(models_dir, model_name, 'vocab.bpe'), 'r', encoding="utf-8") as f:
