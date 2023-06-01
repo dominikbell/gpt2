@@ -2,14 +2,14 @@
 
 Git clone this repository, and `cd` into directory for remaining commands
 ```
-git clone https://github.com/openai/gpt-2.git && cd gpt-2
+git clone https://github.com/dominikbell/gpt2.git && cd gpt-2
 ```
 
-Then, follow instructions for either native or Docker installation.
+Then, follow installation instructions. Instructions for a installation using Docker may be found on the [official repository's developers page](https://github.com/openai/gpt-2/blob/master/DEVELOPERS.md).
 
 ## Native Installation
 
-All steps can optionally be done in a virtual environment using tools such as `virtualenv` or `conda`.
+All steps can optionally be done in a virtual environment using tools such as `venv`, `virtualenv`, or `conda`.
 
 Install tensorflow 1.12 (with GPU support, if you have a GPU and want everything to run faster)
 ```
@@ -31,21 +31,6 @@ python3 download_model.py 124M
 python3 download_model.py 355M
 python3 download_model.py 774M
 python3 download_model.py 1558M
-```
-
-## Docker Installation
-
-Build the Dockerfile and tag the created image as `gpt-2`:
-```
-docker build --tag gpt-2 -f Dockerfile.gpu . # or Dockerfile.cpu
-```
-
-Start an interactive bash session from the `gpt-2` docker image.
-
-You can opt to use the `--runtime=nvidia` flag if you have access to a NVIDIA GPU
-and a valid install of [nvidia-docker 2.0](https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)).
-```
-docker run --runtime=nvidia -it gpt-2 bash
 ```
 
 # Running
